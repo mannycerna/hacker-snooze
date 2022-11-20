@@ -1,4 +1,17 @@
-#card {
-    background-image: var(--bs-gradient);
+
+/* On screens that are 992px wide or less, the background color is blue */
+@media screen and (max-width: 992px) {
+    .container {
+      background-color: rgb(124, 124, 158);
+      color: white;
+    }
+  }
+  
+  /* On screens that are 600px wide or less, the background color is olive */
+  @media screen and (max-width: 600px) {
+    .container {
+      background-color: rgb(13, 90, 74);
+      color: white;
+    }
+  }
     
-}

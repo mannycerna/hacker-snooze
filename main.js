@@ -1,7 +1,9 @@
 
 let container = document.querySelector('.container');
-container.className = "cursor cursor-circle cursor-hover";
+
 container.id = 'container';
+
+let newsCards = document.querySelector('.news-cards')
 
 let hackerURL = 'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty';
 
@@ -20,13 +22,10 @@ let getNews = async () => {
         let storyResponse = await fetch(`https://hacker-news.firebaseio.com/v0/item/${data[i]}.json?print=pretty`);
 
         storyData = await storyResponse.json();
-        // return storyData;
+        // return storyData; //--testing--
         appendData(storyData);
-        // console.log(storyData)
-        // appendData(storyData);
-        }
-      
-       
+        // console.log(storyData) //--testing--
+        }   
     }
     
     // let newData = getNews(); 
@@ -34,42 +33,46 @@ let getNews = async () => {
     function appendData(data) {
         // console.log('hello')//test code
 
-            //creating dynamic elements
-            let row = document.querySelector('#row');
-            let col = document.querySelector('.col');
+            //creating dynamic html elements
 
-            let card = document.createElement('card');
-            card.id = 'card';
-            card.className = 'card border-warning text-bg-dark mb-1';
-            // card.style='width: 18rem';
 
-            let title = document.createElement('h5');
-            title.className = 'card-title';
-            title.innerHTML = `${data.title} &#160;&#160;&#160;&#160 `;
-            title.href = `${data.url}`;
+            newsCards.innerHTML += `
+                <div class = "card text-bg-dark mb-3">
+                <h5> <a href=${data.url}>${data.title}</a> </h5>
+                <div class = "card-subtitle mb-2 text-muted"> Score: ${data.score} Comments: ${data.descendants} Author: ${data.by}</div>
+            `
 
-            let subtitle = document.createElement('h6');
-            subtitle.className = 'card-subtitle mb-2 text-muted';
-            subtitle.innerHTML = `Score: ${data.score} &#160;&#160;&#160;&#160 Comments: ${data.descendants} &#160;&#160;&#160;&#160   Author:  ${data.by}`
+            container.appendChild(newsCards);
+            console.log(data);
 
-            let newsURL = document.createElement('a');
-            newsURL.href = `${data.url}`;
-            newsURL.className = 'card-link'
-            newsURL.innerHTML = `${data.url}`;
+            //----------------First iteration-------------
+            // let card = document.createElement('div');
+            // card.id = 'card';
+            // card.className = 'card border-warning text-bg-dark mb-1';
+      
 
-        
+            // let title = document.createElement('h5');
+            // title.className = 'card-title';
+            // title.innerHTML = `${data.title} &#160;&#160;&#160;&#160 `;
+            // title.href = `${data.url}`;
+
+            // let subtitle = document.createElement('h6');
+            // subtitle.className = 'card-subtitle mb-2 text-muted';
+            // subtitle.innerHTML = `Score: ${data.score} &#160;&#160;&#160;&#160 Comments: ${data.descendants} &#160;&#160;&#160;&#160   Author:  ${data.by}`
+
+            // let newsURL = document.createElement('a');
+            // newsURL.href = `${data.url}`;
+            // newsURL.className = 'card-link'
+            // newsURL.innerHTML = `${data.url}`;
 
             //appending html elements
-            
-            card.appendChild(title);
-            card.appendChild(newsURL);
-            card.appendChild(subtitle);
-            col.appendChild(card);
-            row.appendChild(col);
-            container.appendChild(row);
-          
+
+            // card.appendChild(title);
+            // card.appendChild(newsURL);
+            // card.appendChild(subtitle);
             // container.appendChild(card);
-            console.log(data);
+
+     
         
     }
     //stretch goal
