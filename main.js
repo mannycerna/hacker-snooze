@@ -1,32 +1,7 @@
 
-// let body = document.querySelector('body');
-
 let container = document.querySelector('.container');
 container.className = "cursor cursor-circle cursor-hover";
 container.id = 'container';
-
-
-
-// let title = document.createElement('card');
-// title.className = 'card-title';
-// title.querySelector('#title');
-
-
-let details = document.createElement('ul');
-details.className = 'child';
-details.id = 'details';
-
-let dataURL = document.createElement('a');
-dataURL.className = 'url';
-dataURL.id = 'url';
-
-
-
-// body.appendChild(container);
-// details.appendChild(dataURL);
-// title.appendChild(details);
-// container.appendChild(title);
-// card.appendChild(title);
 
 let hackerURL = 'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty';
 
@@ -59,12 +34,14 @@ let getNews = async () => {
     function appendData(data) {
         // console.log('hello')//test code
 
-            let row = document.querySelector('.row');
-            let col = document.querySelector('.col-sm-6');
+            //creating dynamic elements
+            let row = document.querySelector('#row');
+            let col = document.querySelector('.col');
 
             let card = document.createElement('card');
-            card.className = 'card-body';
-            card.style='width: 18rem';
+            card.id = 'card';
+            card.className = 'card border-warning text-bg-dark mb-1';
+            // card.style='width: 18rem';
 
             let title = document.createElement('h5');
             title.className = 'card-title';
@@ -80,7 +57,9 @@ let getNews = async () => {
             newsURL.className = 'card-link'
             newsURL.innerHTML = `${data.url}`;
 
-            
+            let commentBtn = document.createElement('button');
+
+            //appending html elements
             
             card.appendChild(title);
             card.appendChild(newsURL);
@@ -88,6 +67,7 @@ let getNews = async () => {
             col.appendChild(card);
             row.appendChild(col);
             container.appendChild(row);
+            card.appendChild(commentBtn);
             // container.appendChild(card);
             console.log(data);
         
