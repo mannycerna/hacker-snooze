@@ -57,7 +57,7 @@ let getNews = async () => {
             newsURL.className = 'card-link'
             newsURL.innerHTML = `${data.url}`;
 
-            let commentBtn = document.createElement('');
+        
 
             //appending html elements
             
@@ -67,7 +67,7 @@ let getNews = async () => {
             col.appendChild(card);
             row.appendChild(col);
             container.appendChild(row);
-            card.appendChild(commentBtn);
+          
             // container.appendChild(card);
             console.log(data);
         
